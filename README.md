@@ -9,13 +9,13 @@ A collection of highly extensible React components, including Selectable, a beau
 NPM
 
 ```bash
-npm install @robertzhidealx/lyte@latest
+npm install @robertzhidealx/lyte@0.0.3
 ```
 
 Yarn
 
 ```bash
-yarn add @robertzhidealx/lyte@latest
+yarn add @robertzhidealx/lyte@0.0.3
 ```
 
 ## Selectable
@@ -28,13 +28,15 @@ import { Selectable } from "@robertzhidealx/lyte";
 
 ### Documentation
 
-| Prop       | Type                                                                         | Requirement | Description                                                                                                                                                                   |
-| ---------- | ---------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `width`    | number                                                                       | required    | The width of the Selectable component.                                                                                                                                        |
-| `options`  | {label: string \| number; content?: ReactNode \| string}[]                   | required    | The collection of options to select from.                                                                                                                                     |
-| `_default` | string \| number \| string[] \| number[]                                     | required    | The label of the value(s) that are selected by default. When `multi` is not specified or set to `false`, `_default ` is a single string or number. Otherwise, it is an array. |
-| `multi`    | boolean                                                                      | optional    | Whether Selectable can select multiple options. Defaults to `false`.                                                                                                          |
-| `onChange` | (values: {label: string \| number; content?: ReactNode \| string}[]) => void | optional    | Tracks changes to the selected options. When `multi` is not specified or set to `false`, `values` is a one-item array with the single selected option.                        |
+| Prop           | Type                                                                         | Requirement | Description                                                                                                                                                                   |
+| -------------- | ---------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `width`        | number                                                                       | required    | The width of the Selectable component.                                                                                                                                        |
+| `options`      | {label: string \| number; content?: ReactNode \| string}[]                   | required    | The collection of options to select from.                                                                                                                                     |
+| `defaultValue` | string \| number \| string[] \| number[]                                     | required    | The label of the value(s) that are selected by default. When `multi` is not specified or set to `false`, `_default ` is a single string or number. Otherwise, it is an array. |
+| `multi`        | boolean                                                                      | optional    | Whether Selectable can select multiple options. Defaults to `false`.                                                                                                          |
+| `onChange`     | (values: {label: string \| number; content?: ReactNode \| string}[]) => void | optional    | Tracks changes to the selected options. When `multi` is not specified or set to `false`, `values` is a one-item array with the single selected option.                        |
+| `allowClear`   | boolean                                                                      | optional    | Whether to show clear button to unselect all options. Defaults to `false`.                                                                                                    |
+| `allowRefill`  | boolean                                                                      | optional    | Whether to show refill button to select all options. Defaults to `false`.                                                                                                     |
 
 ### Example Usage
 
@@ -51,9 +53,11 @@ const DemoComponent = () => {
   return (
     <Selectable
       width={260}
+      multi
+      allowClear
+      allowRefill
       options={SelectableOptions}
       _default={SelectableOptions.map(({ label }) => label)}
-      multi
       onChange={(values) => console.log(values)}
     />
   );
