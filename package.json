@@ -1,6 +1,6 @@
 {
-  "name": "lyte",
-  "version": "1.0.0",
+  "name": "@robertz65/lyte",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -9,19 +9,53 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "rollup": "rollup -c"
+    "rollup": "rollup -c",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "dropdown",
+    "multiselect",
+    "select",
+    "selectable"
+  ],
+  "author": "Robert Zhang",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "@babel/preset-typescript": "^7.16.5",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.1",
     "@rollup/plugin-typescript": "^8.3.0",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-webpack5": "^6.4.9",
+    "@storybook/manager-webpack5": "^6.4.9",
+    "@storybook/react": "^6.4.9",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
     "@types/react": "^17.0.37",
-    "react": "^17.0.2",
+    "autoprefixer": "^10.4.0",
+    "babel-jest": "^27.4.5",
+    "babel-loader": "^8.2.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.4.5",
+    "postcss": "^8.4.5",
     "rollup": "^2.61.1",
     "rollup-plugin-dts": "^4.0.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "tailwindcss": "^3.0.7",
     "typescript": "^4.5.4"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "@heroicons/react": "^1.0.5"
   }
 }
