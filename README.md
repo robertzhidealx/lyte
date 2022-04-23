@@ -1,6 +1,6 @@
 # Lyte
 
-A collection of highly extensible React components, including Selectable, a beautiful multiselect dropdown that finally works.
+A collection of highly extensible React components, including Selectable, a beautiful (multi)select dropdown you've been looking for.
 
 ![showcase](./static/showcase.png)
 
