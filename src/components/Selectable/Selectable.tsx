@@ -24,7 +24,7 @@ export interface Props {
   options: DropdownOptions[];
   _default: string | number | string[] | number[];
   multi?: boolean;
-  onChange?: (values: any) => void;
+  onChange?: (values: DropdownOptions[]) => void;
 }
 
 const Selectable: React.FC<Props> = ({
@@ -174,18 +174,15 @@ const Selectable: React.FC<Props> = ({
       </div>
       {expanded && (
         <div
-          className="fixed bg-white border -translate-x-[5px] translate-y-2 border-slate-200 rounded flex flex-col gap-1 divide-y"
+          className="fixed bg-white border -translate-x-[5px] translate-y-2 border-slate-200 rounded flex flex-col divide-y"
           style={{ width }}
         >
-          {options.map((option, index) => {
+          {options.map((option) => {
             return (
               <div
                 key={option.label}
                 onClick={(e) => handleSelect(e, option)}
-                className={`${index === 0 && "pt-0.5"} ${
-                  index === options.length - 1 && "pb-0.5"
-                }
-                px-1 cursor-pointer`}
+                className="px-1 py-1 cursor-pointer"
               >
                 {option.content || option.label}
               </div>

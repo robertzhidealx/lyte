@@ -16,16 +16,16 @@ const Template: ComponentStory<typeof Selectable> = (args) => (
 export const HelloWorld = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 const eg = [
-  // { label: "a", content: " adsfjf" },
-  // { label: "b", content: "a adsfjf" },
-  { label: "a", content: "ayo what afjaldfks asdfljadfl adsfjf" },
-  { label: "b", content: "ayo what afjaldfks" },
+  { label: 1, content: "Option 1" },
+  { label: 2, content: "Option 2" },
+  { label: 3, content: "Option 3" },
 ];
 HelloWorld.args = {
-  width: 200,
+  width: 260,
   options: eg,
   _default: eg.map(({ label }) => label),
   multi: true,
+  onChange: (values) => console.log(values),
 };
 
 export const ClickMe = Template.bind({});

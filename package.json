@@ -1,7 +1,10 @@
 {
-  "name": "@robertz65/lyte",
+  "name": "@robertzhidealx/lyte",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/robertzhidealx"
+  },
   "version": "0.0.1",
-  "description": "",
+  "description": "A collection of highly extensible React components.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
@@ -18,7 +21,10 @@
     "dropdown",
     "multiselect",
     "select",
-    "selectable"
+    "selectable",
+    "react",
+    "typescript",
+    "javascript"
   ],
   "author": "Robert Zhang",
   "license": "ISC",
