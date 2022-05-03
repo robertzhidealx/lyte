@@ -2,20 +2,20 @@
 
 A collection of highly extensible React components, including Selectable, a beautiful (multi)select dropdown you've been looking for.
 
-![showcase](./static/showcase.png)
+![showcase](https://github.com/robertzhidealx/lyte/blob/main/static/showcase.png)
 
 ## Installation
 
 NPM
 
 ```bash
-npm install @robertzhidealx/lyte
+npm install @robertz65/lyte
 ```
 
 Yarn
 
 ```bash
-yarn add @robertzhidealx/lyte
+yarn add @robertz65/lyte
 ```
 
 ## Selectable
@@ -23,7 +23,7 @@ yarn add @robertzhidealx/lyte
 ### Import
 
 ```js
-import { Selectable } from "@robertzhidealx/lyte";
+import { Selectable } from "@robertz65/lyte";
 ```
 
 ### Documentation
@@ -42,7 +42,7 @@ import { Selectable } from "@robertzhidealx/lyte";
 ### Example Usage
 
 ```ts
-import { Selectable } from "@robertzhidealx/lyte";
+import { Selectable } from "@robertz65/lyte";
 
 const SelectableOptions = [
   { label: 1, content: "Option 1" },
@@ -58,7 +58,7 @@ const DemoComponent = () => {
       allowClear
       allowRefill
       options={SelectableOptions}
-      _default={SelectableOptions.map(({ label }) => label)}
+      defaultValue={SelectableOptions.map(({ label }) => label)}
       onChange={(values) => console.log(values)}
     />
   );
