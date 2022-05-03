@@ -217,22 +217,26 @@ const Selectable: React.FC<Props> = ({
                 : width,
           }}
         >
-          {options.map((option) => {
+          {options.map((option, index) => {
             const isSelected = selected.find((s) => s.label === option.label);
             return (
               <div
                 key={option.label}
                 onClick={(e) => handleSelect(e, option)}
                 className={`px-1 py-1 cursor-pointer w-full ${
-                  isSelected && "bg-slate-50 dark:bg-slate-500"
-                }`}
+                  !index
+                    ? "rounded-t"
+                    : index === options.length - 1
+                    ? "rounded-b"
+                    : ""
+                } ${isSelected && "bg-slate-50 dark:bg-slate-500"}`}
               >
                 <div className="flex items-center justify-between w-full">
-                  <p className="dark:text-white">
+                  <p className="mb-0 dark:text-white">
                     {option.content || option.label}
                   </p>
                   {isSelected && (
-                    <p className="text-xs text-slate-400 dark:text-slate-200">
+                    <p className="mb-0 text-xs text-slate-400 dark:text-slate-200">
                       Selected
                     </p>
                   )}
