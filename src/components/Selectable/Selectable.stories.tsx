@@ -10,21 +10,22 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Selectable> = (args) => (
-  <div className="h-screen w-80">
+  <div className="h-[400px] w-80">
     <Selectable {...args} />
   </div>
 );
 
-export const Multiselect = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 const selectableOptions = [
   { label: 1, content: "Option 1" },
   { label: 2, content: "Option 2" },
   { label: 3, content: "Option 3" },
 ];
 
+export const Multiselect = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+
 Multiselect.args = {
-  width: "100%",
+  width: 260,
   options: selectableOptions,
   defaultValue: selectableOptions.map(({ label }) => label),
   multi: true,
@@ -38,4 +39,14 @@ Select.args = {
   width: 200,
   options: selectableOptions,
   defaultValue: 2,
+};
+
+export const TopSelect = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+
+TopSelect.args = {
+  width: 260,
+  options: selectableOptions,
+  defaultValue: 2,
+  menuPlacement: "top",
 };

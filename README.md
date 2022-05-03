@@ -20,6 +20,10 @@ yarn add @robertz65/lyte
 
 ## Selectable
 
+🔘 Multiselect <br />
+🔭 Full TypeScript support <br />
+🌓 Dark mode (Tailwind CSS) <br />
+
 ### Import
 
 ```js
@@ -28,16 +32,17 @@ import { Selectable } from "@robertz65/lyte";
 
 ### Documentation
 
-| Prop           | Type                                                                         | Requirement | Description                                                                                                                                                                   |
-| -------------- | ---------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `width`        | number \| string                                                             | required    | The width of the Selectable component. Either a number corresponding to a number of pixels or `"100%"` to match the width of its parent.                                      |
-| `options`      | {label: string \| number; content?: ReactNode \| string}[]                   | required    | The collection of options to select from.                                                                                                                                     |
-| `defaultValue` | string \| number \| string[] \| number[]                                     | required    | The label of the value(s) that are selected by default. When `multi` is not specified or set to `false`, `_default ` is a single string or number. Otherwise, it is an array. |
-| `multi`        | boolean                                                                      | optional    | Whether Selectable can select multiple options. Defaults to `false`.                                                                                                          |
-| `onChange`     | (values: {label: string \| number; content?: ReactNode \| string}[]) => void | optional    | Tracks changes to the selected options. When `multi` is not specified or set to `false`, `values` is a one-item array with the single selected option.                        |
-| `allowClear`   | boolean                                                                      | optional    | Whether to show clear button to unselect all options. Defaults to `false`.                                                                                                    |
-| `allowRefill`  | boolean                                                                      | optional    | Whether to show refill button to select all options. Defaults to `false`.                                                                                                     |
-| `className`    | string                                                                       | optional    | A list of classes applied to Selectable.                                                                                                                                      |
+| Prop            | Type                                                                         | Requirement | Description                                                                                                                                                                   |
+| --------------- | ---------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `width`         | number \| string                                                             | required    | The width of the Selectable component. Either a number corresponding to a number of pixels or `"100%"` to match the width of its parent.                                      |
+| `options`       | {label: string \| number; content?: ReactNode \| string}[]                   | required    | The collection of options to select from.                                                                                                                                     |
+| `defaultValue`  | string \| number \| string[] \| number[]                                     | required    | The label of the value(s) that are selected by default. When `multi` is not specified or set to `false`, `_default ` is a single string or number. Otherwise, it is an array. |
+| `multi`         | boolean                                                                      | optional    | Whether Selectable can select multiple options. Defaults to `false`.                                                                                                          |
+| `onChange`      | (values: {label: string \| number; content?: ReactNode \| string}[]) => void | optional    | Tracks changes to the selected options. When `multi` is not specified or set to `false`, `values` is a one-item array with the single selected option.                        |
+| `allowClear`    | boolean                                                                      | optional    | Whether to show clear button to unselect all options. Defaults to `false`. Only works under `multi` mode.                                                                     |
+| `allowRefill`   | boolean                                                                      | optional    | Whether to show refill button to select all options. Defaults to `false`. Only works under `multi` mode.                                                                      |
+| `className`     | string                                                                       | optional    | A list of classes applied to Selectable.                                                                                                                                      |
+| `menuPlacement` | `"top"` \| `"bottom"`                                                        | optional    | Whether the options menu appears above or below Selectable. Defaults to `"bottom"`. Only works under single selection mode.                                                   |
 
 ### Example Usage
 

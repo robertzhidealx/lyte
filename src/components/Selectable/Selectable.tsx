@@ -9,6 +9,7 @@ import React, {
 import {
   BackspaceIcon,
   ChevronDownIcon,
+  ChevronUpIcon,
   RefreshIcon,
   XIcon,
 } from "@heroicons/react/solid";
@@ -30,6 +31,7 @@ export interface Props {
   onChange?: (values: DropdownOptions[]) => void;
   allowClear?: boolean;
   allowRefill?: boolean;
+  menuPlacement?: "top" | "bottom";
 }
 
 const Selectable: React.FC<Props> = ({
@@ -41,6 +43,7 @@ const Selectable: React.FC<Props> = ({
   onChange = undefined,
   allowClear = false,
   allowRefill = false,
+  menuPlacement = "bottom",
 }) => {
   const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -109,12 +112,12 @@ const Selectable: React.FC<Props> = ({
 
   return (
     <div
-      className={`relative z-50 py-1 pl-1 pr-1 text-sm transition-colors duration-100 ease-in border rounded select-none group border-slate-200 hover:border-slate-300 ${className}`}
+      className={`relative z-50 py-1 pl-1 pr-1 text-sm transition-colors duration-100 bg-white dark:bg-slate-600 ease-in border rounded select-none group border-slate-200 hover:border-slate-300 dark:border-slate-700 dark:hover:border-slate-800 ${className}`}
       style={{ width }}
       onClick={handleExpand}
       ref={ref}
     >
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full dark:text-white ">
         <div className="flex flex-wrap gap-1">
           {multi ? (
             selected.length ? (
@@ -131,10 +134,13 @@ const Selectable: React.FC<Props> = ({
                           ? controlsRef.current.clientWidth + 10
                           : 0),
                     }}
-                    className="flex items-center h-5 gap-1 px-1 truncate duration-100 ease-in rounded-sm transition-color bg-slate-200 hover:bg-slate-300"
+                    className="flex items-center h-5 gap-1 px-1 truncate duration-100 ease-in rounded-sm transition-color bg-slate-200 hover:bg-slate-300 dark:bg-white dark:hover:bg-slate-200"
                     key={s.label}
                   >
-                    <p className="truncate" style={{ maxWidth: width }}>
+                    <p
+                      className="truncate dark:text-black"
+                      style={{ maxWidth: width }}
+                    >
                       {s.content || s.label}
                     </p>
                     <div
@@ -148,20 +154,22 @@ const Selectable: React.FC<Props> = ({
                         onChange(newSelected);
                       }}
                     >
-                      <XIcon className="w-3.5 h-3.5 text-slate-600" />
+                      <XIcon className="w-3.5 h-3.5 text-slate-600 dark:text-slate-700" />
                     </div>
                   </span>
                 ))}
               </>
             ) : (
-              <span className="text-slate-400">Select...</span>
+              <span className="text-slate-400 dark:text-slate-200">
+                Select...
+              </span>
             )
           ) : (
             selected.length && (selected[0].content || selected[0].label)
           )}
         </div>
         <div
-          className="flex items-center flex-none h-full gap-1 pl-2 transition-colors duration-100 ease-in"
+          className="flex items-center flex-none h-full gap-1 pl-2"
           ref={controlsRef}
         >
           {multi && (
@@ -174,7 +182,7 @@ const Selectable: React.FC<Props> = ({
                     onChange(options);
                   }}
                 >
-                  <RefreshIcon className="w-4 h-4 cursor-pointer text-slate-500 hover:text-slate-600" />
+                  <RefreshIcon className="w-4 h-4 transition-colors duration-100 ease-in cursor-pointer text-slate-500 hover:text-slate-600 dark:text-slate-300 dark:hover:text-white" />
                 </div>
               )}
               {allowClear && (
@@ -185,17 +193,23 @@ const Selectable: React.FC<Props> = ({
                     onChange([]);
                   }}
                 >
-                  <BackspaceIcon className="w-4 h-4 cursor-pointer text-slate-500 hover:text-slate-600" />
+                  <BackspaceIcon className="w-4 h-4 transition-colors duration-100 ease-in cursor-pointer text-slate-500 hover:text-slate-600 dark:text-slate-300 dark:hover:text-white" />
                 </div>
               )}
             </div>
           )}
-          <ChevronDownIcon className="w-5 h-5 text-slate-500 group-hover:text-slate-600" />
+          {menuPlacement === "top" ? (
+            <ChevronUpIcon className="w-5 h-5 transition-colors duration-100 ease-in text-slate-500 group-hover:text-slate-600 dark:text-slate-300 dark:group-hover:text-white" />
+          ) : (
+            <ChevronDownIcon className="w-5 h-5 transition-colors duration-100 ease-in text-slate-500 group-hover:text-slate-600 dark:text-slate-300 dark:group-hover:text-white" />
+          )}
         </div>
       </div>
       {expanded && (
         <div
-          className="absolute bg-white border -translate-x-[5px] translate-y-2 border-slate-200 rounded flex flex-col divide-y"
+          className={`absolute bg-white dark:bg-slate-600 border -translate-x-[5px] translate-y-2 border-slate-200 dark:border-slate-800 rounded flex flex-col divide-y dark:divide-slate-800 ${
+            menuPlacement === "top" ? "bottom-10" : ""
+          }`}
           style={{
             width:
               typeof width === "string" && width === "100%"
@@ -210,13 +224,17 @@ const Selectable: React.FC<Props> = ({
                 key={option.label}
                 onClick={(e) => handleSelect(e, option)}
                 className={`px-1 py-1 cursor-pointer w-full ${
-                  isSelected && "bg-slate-50"
+                  isSelected && "bg-slate-50 dark:bg-slate-500"
                 }`}
               >
                 <div className="flex items-center justify-between w-full">
-                  {option.content || option.label}
+                  <p className="dark:text-white">
+                    {option.content || option.label}
+                  </p>
                   {isSelected && (
-                    <p className="text-xs font text-slate-400">Selected</p>
+                    <p className="text-xs text-slate-400 dark:text-slate-200">
+                      Selected
+                    </p>
                   )}
                 </div>
               </div>

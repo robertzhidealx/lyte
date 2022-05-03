@@ -1,1 +1,6 @@
-export { default as Selectable, Props as SelectableProps } from "./Selectable";
+export {
+  default as Selectable,
+  Props as SelectableProps,
+  DropdownOptions as SelectableOptions,
+  LabelValue as SelectableLabelValue,
+} from "./Selectable";
