@@ -1,1 +1,1 @@
-export { default as Selectable } from "./Selectable";
+export { default as Selectable, Props as SelectableProps } from "./Selectable";

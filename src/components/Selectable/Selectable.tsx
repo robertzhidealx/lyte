@@ -14,17 +14,18 @@ import {
 } from "@heroicons/react/solid";
 import { useClickOutside } from "../../utils";
 
-interface DropdownOptions {
-  label: string | number;
+export type LabelValue = string | number;
+
+export interface DropdownOptions {
+  label: LabelValue;
   content?: ReactNode | string;
 }
 
-type Value = string | number;
-
 export interface Props {
-  width: number;
+  className?: string;
+  width: number | "100%";
   options: DropdownOptions[];
-  defaultValue: Value | Value[];
+  defaultValue: LabelValue | LabelValue[];
   multi?: boolean;
   onChange?: (values: DropdownOptions[]) => void;
   allowClear?: boolean;
@@ -32,6 +33,7 @@ export interface Props {
 }
 
 const Selectable: React.FC<Props> = ({
+  className = "",
   width,
   options,
   defaultValue,
@@ -107,7 +109,7 @@ const Selectable: React.FC<Props> = ({
 
   return (
     <div
-      className="relative z-50 py-1 pl-1 pr-1 text-sm transition-colors duration-100 ease-in border rounded select-none group border-slate-200 hover:border-slate-300"
+      className={`relative z-50 py-1 pl-1 pr-1 text-sm transition-colors duration-100 ease-in border rounded select-none group border-slate-200 hover:border-slate-300 ${className}`}
       style={{ width }}
       onClick={handleExpand}
       ref={ref}
@@ -116,36 +118,41 @@ const Selectable: React.FC<Props> = ({
         <div className="flex flex-wrap gap-1">
           {multi ? (
             selected.length ? (
-              selected.map((s) => (
-                <span
-                  style={{
-                    maxWidth:
-                      width -
-                      (controlsRef.current
-                        ? controlsRef.current.clientWidth + 10
-                        : 0),
-                  }}
-                  className="flex items-center h-5 gap-1 px-1 truncate duration-100 ease-in rounded-sm transition-color bg-slate-200 hover:bg-slate-300"
-                  key={s.label}
-                >
-                  <p className="truncate" style={{ maxWidth: width }}>
-                    {s.content || s.label}
-                  </p>
-                  <div
-                    className="cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      const newSelected = selected.filter(
-                        (c) => c.label !== s.label
-                      );
-                      setSelected(newSelected);
-                      onChange(newSelected);
+              <>
+                {selected.map((s) => (
+                  <span
+                    style={{
+                      maxWidth:
+                        (typeof width === "number"
+                          ? width
+                          : ref.current &&
+                            ref.current.parentElement.clientWidth) -
+                        (controlsRef.current
+                          ? controlsRef.current.clientWidth + 10
+                          : 0),
                     }}
+                    className="flex items-center h-5 gap-1 px-1 truncate duration-100 ease-in rounded-sm transition-color bg-slate-200 hover:bg-slate-300"
+                    key={s.label}
                   >
-                    <XIcon className="w-3.5 h-3.5 text-slate-600" />
-                  </div>
-                </span>
-              ))
+                    <p className="truncate" style={{ maxWidth: width }}>
+                      {s.content || s.label}
+                    </p>
+                    <div
+                      className="cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const newSelected = selected.filter(
+                          (c) => c.label !== s.label
+                        );
+                        setSelected(newSelected);
+                        onChange(newSelected);
+                      }}
+                    >
+                      <XIcon className="w-3.5 h-3.5 text-slate-600" />
+                    </div>
+                  </span>
+                ))}
+              </>
             ) : (
               <span className="text-slate-400">Select...</span>
             )
@@ -163,7 +170,6 @@ const Selectable: React.FC<Props> = ({
                 <div
                   onClick={(e) => {
                     e.stopPropagation();
-                    console.log(defaultValue);
                     setSelected(options);
                     onChange(options);
                   }}
@@ -189,8 +195,13 @@ const Selectable: React.FC<Props> = ({
       </div>
       {expanded && (
         <div
-          className="fixed bg-white border -translate-x-[4.5px] translate-y-2 border-slate-200 rounded flex flex-col divide-y"
-          style={{ width }}
+          className="absolute bg-white border -translate-x-[5px] translate-y-2 border-slate-200 rounded flex flex-col divide-y"
+          style={{
+            width:
+              typeof width === "string" && width === "100%"
+                ? ref.current.parentElement.clientWidth
+                : width,
+          }}
         >
           {options.map((option) => {
             const isSelected = selected.find((s) => s.label === option.label);
