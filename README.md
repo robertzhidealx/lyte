@@ -6,16 +6,8 @@ A collection of highly extensible React components, including Selectable, a beau
 
 ## Installation
 
-NPM
-
 ```bash
 npm install @robertz65/lyte
-```
-
-Yarn
-
-```bash
-yarn add @robertz65/lyte
 ```
 
 ## Selectable

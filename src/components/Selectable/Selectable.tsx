@@ -107,6 +107,7 @@ const Selectable: React.FC<Props> = ({
     } else {
       setSelected([option]);
       onChange([option]);
+      setExpanded(false);
     }
   };
 
@@ -138,7 +139,7 @@ const Selectable: React.FC<Props> = ({
                     key={s.label}
                   >
                     <p
-                      className="truncate dark:text-black"
+                      className="m-0 truncate dark:text-black"
                       style={{ maxWidth: width }}
                     >
                       {s.content || s.label}
@@ -232,11 +233,11 @@ const Selectable: React.FC<Props> = ({
                 } ${isSelected && "bg-slate-50 dark:bg-slate-500"}`}
               >
                 <div className="flex items-center justify-between w-full">
-                  <p className="mb-0 dark:text-white">
+                  <p className="m-0 dark:text-white">
                     {option.content || option.label}
                   </p>
                   {isSelected && (
-                    <p className="mb-0 text-xs text-slate-400 dark:text-slate-200">
+                    <p className="m-0 text-xs text-slate-400 dark:text-slate-200">
                       Selected
                     </p>
                   )}
