@@ -10,9 +10,9 @@ import {
   BackspaceIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  RefreshIcon,
-  XIcon,
-} from "@heroicons/react/solid";
+  ArrowPathIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 import { useClickOutside } from "../../utils";
 
 export type LabelValue = string | number;
@@ -155,7 +155,7 @@ const Selectable: React.FC<Props> = ({
                         onChange(newSelected);
                       }}
                     >
-                      <XIcon className="w-3.5 h-3.5 text-slate-600 dark:text-slate-700" />
+                      <XMarkIcon className="w-3.5 h-3.5 text-slate-600 dark:text-slate-700" />
                     </div>
                   </span>
                 ))}
@@ -183,7 +183,7 @@ const Selectable: React.FC<Props> = ({
                     onChange(options);
                   }}
                 >
-                  <RefreshIcon className="w-4 h-4 transition-colors duration-100 ease-in cursor-pointer text-slate-500 hover:text-slate-600 dark:text-slate-300 dark:hover:text-white" />
+                  <ArrowPathIcon className="w-4 h-4 transition-colors duration-100 ease-in cursor-pointer text-slate-500 hover:text-slate-600 dark:text-slate-300 dark:hover:text-white" />
                 </div>
               )}
               {allowClear && (

@@ -35,6 +35,7 @@ Multiselect.args = {
 };
 
 export const Select = Template.bind({});
+
 Select.args = {
   width: 200,
   options: selectableOptions,
@@ -42,7 +43,6 @@ Select.args = {
 };
 
 export const TopSelect = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 TopSelect.args = {
   width: 260,
